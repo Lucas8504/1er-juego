@@ -1,0 +1,59 @@
+/Library
+/Library/APIUpdater/ConfigurationCache
+/Library/ShaderCache
+/Logs
+/Build/
+/Temp/
+# Directorios específicos de Unity
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+
+# Archivos de configuración específicos de Unity
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Archivos de configuración de Visual Studio
+.vs/
+
+# Assets de Asset Store que no se deben compartir
+/[Aa]ssets/[Aa]sset[Ss]tore/
+
+# Archivos de caché y miniaturas
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Carpeta de plugins nativos específicos de la plataforma
+/[Pp]lugins/
+
+# Archivos de configuración local
+LocalSettings.json
+
+# Carpetas de paquetes que pueden contener dependencias específicas del desarrollador
+/[Pp]ackages/
+
+# Archivos de registro y volcado
+*.log
+*.crashlog
+*.dmp
