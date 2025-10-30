@@ -21,15 +21,46 @@ public class Candy : MonoBehaviour
         Vector2.right
     };
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SelectCandy()
     {
-        
+        isSelected = true;
+        spriteRenderer.color = seletedColor;
+        previousSelected = gameObject.GetComponent<Candy>();
+    }
+
+    private void DeselectCandy()
+    {
+        isSelected = false;
+        spriteRenderer.color = Color.white;
+        previousSelected = null;
+    }
+
+    private void OnMouseDown()
+    {
+        if (spriteRenderer.sprite == null || BoardManager.sharedInstance.isShifting)
+        {
+            return;
+        }
+        if (isSelected)
+        {
+            DeselectCandy();
+        }
+        else
+        {
+            if (previousSelected == null)
+            {
+                SelectCandy();
+            }
+            else
+            {
+                previousSelected.DeselectCandy();
+                SelectCandy();
+            }
+        }
     }
 }

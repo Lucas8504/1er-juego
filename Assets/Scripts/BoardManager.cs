@@ -11,7 +11,9 @@ public class BoardManager: MonoBehaviour
 
     private GameObject[,] candies;
 
-    private bool isShifting { get; set; }
+    public bool isShifting { get; set; }
+
+    private Candy selectedCandy;
 
     void Start()
     {
@@ -72,3 +74,4 @@ public class BoardManager: MonoBehaviour
     }
 }
 
+ 
