@@ -13,7 +13,7 @@ public class Candy : MonoBehaviour
 
     public int id;
 
-    private Vector2[] adjacenDiections = new Vector2[]
+    private Vector2[] adjacenDirections = new Vector2[]
     {
         Vector2.up,
         Vector2.down,
@@ -58,9 +58,17 @@ public class Candy : MonoBehaviour
             }
             else
             {
-                SwapSprite(previousSelected);
-                previousSelected.DeselectCandy();
-                //SelectCandy();
+               if (CanSwipe())
+                {
+                    SwapSprite(previousSelected);
+                    previousSelected.DeselectCandy();
+                }
+               else
+                {
+                    previousSelected.DeselectCandy();
+                    SelectCandy();
+                }
+                
             }
         }
     }
@@ -79,5 +87,35 @@ public class Candy : MonoBehaviour
         int tempId = newCandy.id;
         newCandy.id = this.id;
         this.id = tempId;
+    }
+
+    private GameObject GetNeighbor(Vector2 direction)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, direction);
+
+        if (hit.collider != null)
+        {
+            return hit.collider.gameObject;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    private List<GameObject> GetAllNeighbors()
+    {
+        List<GameObject> neighbors = new List<GameObject>();
+
+        foreach(Vector2 direction in adjacenDirections)
+        {
+            neighbors.Add(GetNeighbor(direction));
+        }
+        return neighbors;
+    }
+
+    private bool CanSwipe()
+    {
+        return GetAllNeighbors().Contains(previousSelected.gameObject);
     }
 }
