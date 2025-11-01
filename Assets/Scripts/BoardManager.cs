@@ -15,6 +15,8 @@ public class BoardManager: MonoBehaviour
 
     private Candy selectedCandy;
 
+    public const int MinCandiesToMatch = 2; 
+
     void Start()
     {
         if (sharedInstance == null)
@@ -67,10 +69,10 @@ public class BoardManager: MonoBehaviour
             }
         }
     }
-    void Update()
+    private List<GameObject> FindMatch(Vector2 direction)
     {
-        // This method is called once per frame
-        // You can add any logic that needs to be checked or updated every frame here
+         List<GameObject> matchingCandies = new List<GameObject>();
+
     }
 }
 
