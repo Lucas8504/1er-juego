@@ -123,7 +123,7 @@ public class Candy : MonoBehaviour
     {
         List<GameObject> matchingCandies = new List<GameObject>();
 
-
+        //Consulta de vecinos.
         RaycastHit2D hit = Physics2D.Raycast(this.transform.position,direction);
 
         while (hit.collider != null && hit.collider.GetComponent<SpriteRenderer>().sprite ==
@@ -133,6 +133,7 @@ public class Candy : MonoBehaviour
             hit = Physics2D.Raycast(hit.collider.transform.position,direction);
         }
 
+        //Consulta de vecionos en direccion contraria.
         hit = Physics2D.Raycast(this.transform.position, -direction);
 
         while (hit.collider != null && hit.collider.GetComponent<SpriteRenderer>().sprite ==
