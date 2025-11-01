@@ -69,11 +69,12 @@ public class BoardManager: MonoBehaviour
             }
         }
     }
-    private List<GameObject> FindMatch(Vector2 direction)
-    {
-         List<GameObject> matchingCandies = new List<GameObject>();
+    //private List<GameObject> FindMatch(Vector2 direction)
+    //{
+    //     List<GameObject> matchingCandies = new List<GameObject>();
 
-    }
+    //}
+
 }
 
  

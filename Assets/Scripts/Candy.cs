@@ -58,31 +58,33 @@ public class Candy : MonoBehaviour
             }
             else
             {
-               if (CanSwipe())
+                if (CanSwipe())
                 {
                     SwapSprite(previousSelected);
+                    previousSelected.FindAllMatches();
                     previousSelected.DeselectCandy();
+                    FindAllMatches();
                 }
-               else
+                else
                 {
                     previousSelected.DeselectCandy();
                     SelectCandy();
                 }
-                
+
             }
         }
     }
 
     public void SwapSprite(Candy newCandy)
     {
-        
+
         if (spriteRenderer.sprite == newCandy.GetComponent<SpriteRenderer>().sprite)
         {
             return;
         }
         Sprite oldCandy = newCandy.spriteRenderer.sprite;
         newCandy.spriteRenderer.sprite = this.spriteRenderer.sprite;
-        this.spriteRenderer.sprite = oldCandy;  
+        this.spriteRenderer.sprite = oldCandy;
 
         int tempId = newCandy.id;
         newCandy.id = this.id;
@@ -107,7 +109,7 @@ public class Candy : MonoBehaviour
     {
         List<GameObject> neighbors = new List<GameObject>();
 
-        foreach(Vector2 direction in adjacenDirections)
+        foreach (Vector2 direction in adjacenDirections)
         {
             neighbors.Add(GetNeighbor(direction));
         }
@@ -124,28 +126,66 @@ public class Candy : MonoBehaviour
         List<GameObject> matchingCandies = new List<GameObject>();
 
         //Consulta de vecinos.
-        RaycastHit2D hit = Physics2D.Raycast(this.transform.position,direction);
-
-        while (hit.collider != null && hit.collider.GetComponent<SpriteRenderer>().sprite ==
-            spriteRenderer.sprite)
-        { 
-        matchingCandies.Add(hit.collider.gameObject);
-            hit = Physics2D.Raycast(hit.collider.transform.position,direction);
-        }
-
-        //Consulta de vecionos en direccion contraria.
-        hit = Physics2D.Raycast(this.transform.position, -direction);
+        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, direction);
 
         while (hit.collider != null && hit.collider.GetComponent<SpriteRenderer>().sprite ==
             spriteRenderer.sprite)
         {
             matchingCandies.Add(hit.collider.gameObject);
-            hit = Physics2D.Raycast(hit.collider.transform.position, -direction);
+            hit = Physics2D.Raycast(hit.collider.transform.position, direction);
         }
 
-        return matchingCandies; 
+       
 
+        return matchingCandies;
 
+    }
+
+    private bool ClearMatch(Vector2[] directions)
+    {
+        List<GameObject> matchingCandies = new List<GameObject>();
+        foreach (Vector2 direction in directions)
+        {
+            matchingCandies.AddRange(FindMatch(direction));
+        }
+
+        if (matchingCandies.Count >= BoardManager.MinCandiesToMatch)
+        {
+            foreach (GameObject candy in matchingCandies)
+            {
+                candy.GetComponent<SpriteRenderer>().sprite = null;
+            }
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    public void FindAllMatches()
+    {
+        if (spriteRenderer.sprite == null)
+        {
+            return;
+        }
+        
+        bool hMatch = ClearMatch(new Vector2[2] 
+        {
+            Vector2.left, Vector2.right 
+        });
+
+        bool vMatch = ClearMatch(new Vector2[2]
+        {
+            Vector2.up, Vector2.down
+        });
+
+        if (hMatch || vMatch)
+        {
+            spriteRenderer.sprite = null;   
+        }
     }
 
 }
