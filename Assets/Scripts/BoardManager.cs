@@ -110,13 +110,36 @@ public class BoardManager : MonoBehaviour
             for (int j = 0; j < renderers.Count -1; j++)
             {
                 renderers[j].sprite = renderers[j + 1].sprite;
-                renderers[j + 1].sprite = null;
+                renderers[j + 1].sprite = GetNewCandy(x,ySize-1);
             }
 
         }
         
         isShifting = false;
 
+    }
+
+    private Sprite GetNewCandy(int x, int y)
+    {
+        List<Sprite> possibleCandies = new List<Sprite>();
+        possibleCandies.AddRange(prefabs);
+        
+        if (x > 0)
+        {
+           possibleCandies.Remove(candies[x -1, y].GetComponent<SpriteRenderer>().sprite);
+        }
+        
+        if (x < xSize -1)
+        {
+            possibleCandies.Remove(candies[x + 1, y].GetComponent<SpriteRenderer>().sprite);
+        }
+        // Remove the candy to the left
+        if (y > 0)
+        {
+            possibleCandies.Remove(candies[x, y -1].GetComponent<SpriteRenderer>().sprite);
+        }
+        return possibleCandies [Random.Range(0, possibleCandies.Count)];
+        
     }
 }
  
