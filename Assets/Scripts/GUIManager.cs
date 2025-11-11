@@ -8,8 +8,9 @@ public class GUIManager: MonoBehaviour
 
     void Start()
     {
-        moveCounter = 30;
-        movesText.text = "Moves: " + moveCounter;
+        
+       
+
     }
 
     private void Update()
