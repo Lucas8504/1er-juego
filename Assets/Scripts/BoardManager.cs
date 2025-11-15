@@ -114,6 +114,8 @@ public class BoardManager : MonoBehaviour
         }
         for (int i = 0; i < nullCandies; i++)
         {
+            GUIManager.sharedInstance.Score += 10;
+
             yield return new WaitForSeconds(shiftDelay);
             for (int j = 0; j < renderers.Count -1; j++)
             {

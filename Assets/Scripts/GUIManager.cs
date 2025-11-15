@@ -27,8 +27,20 @@ public class GUIManager: MonoBehaviour
             scoreText.text = "Score: " + score;
         }
     }
+    public static GUIManager sharedInstance;  
+
     void Start()
     {
+        if (sharedInstance == null)
+        {
+            sharedInstance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
+
         score = 0;
         movesCounter = 30;
         movesText.text = "Moves: " + movesCounter;
