@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,14 @@ public class GUIManager: MonoBehaviour
         {
             movesCounter = value;
             movesText.text = "Moves: " + movesCounter;
+
+            if (movesCounter <= 0)
+            {
+
+                movesCounter = 0;
+                StartCoroutine(GameOver());
+
+            }
         }
     }
     public int Score
@@ -46,6 +55,13 @@ public class GUIManager: MonoBehaviour
         movesText.text = "Moves: " + movesCounter;
         scoreText.text = "Score: " + score;
     }
+
+    private IEnumerator GameOver()
+    {
+        yield return new WaitUntil(() => BoardManager.sharedInstance.isShifting);
+        yield return new WaitForSeconds(0.25f);
+    }
+
 
     private void Update()
     {
