@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,12 @@ public class GUIManager: MonoBehaviour
     public Text movesText, scoreText;
     private int movesCounter;
     private int score;
+    public GameObject gameOverPanel;
+    public TextMeshProUGUI gameOverText;
+    public Button reiniciarButton;
+    public Button menuButton;
+
+    private bool isGameOver = false;
 
 
     public int MovesCounter
