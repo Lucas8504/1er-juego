@@ -63,10 +63,12 @@ public class GUIManager: MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
+    
     private IEnumerator GameOver()
     {
         yield return new WaitUntil(() => BoardManager.sharedInstance.isShifting);
         yield return new WaitForSeconds(0.25f);
+
     }
 
 
