@@ -28,9 +28,13 @@ public class Candy : MonoBehaviour
 
     private void SelectCandy()
     {
-        isSelected = true;
-        spriteRenderer.color = seletedColor;
-        previousSelected = gameObject.GetComponent<Candy>();
+        // Solo se puede seleccionar si hay movimientos disponibles
+        if (GUIManager.sharedInstance.MovesCounter > 0)
+        {
+            isSelected = true;
+            spriteRenderer.color = seletedColor;
+            previousSelected = gameObject.GetComponent<Candy>();
+        }
     }
 
     private void DeselectCandy()

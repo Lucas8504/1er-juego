@@ -17,7 +17,7 @@ public class GUIManager: MonoBehaviour
     public Button reiniciarButton;
     public Button menuButton;
 
-    private bool isGameOver = false;
+    
 
 
     public int MovesCounter
