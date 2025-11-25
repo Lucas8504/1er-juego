@@ -22,6 +22,7 @@ public class GUIManager: MonoBehaviour
 
     public void AddScore(int amount)
     {
+        multiScore++;
         score += amount * multiScore;
         scoreText.text = "Score: " + score;
     }
