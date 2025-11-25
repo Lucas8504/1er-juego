@@ -64,11 +64,14 @@ public class Candy : MonoBehaviour
             {
                 if (CanSwipe())
                 {
+                    GUIManager.sharedInstance.ResetMultiplier();
+
                     SwapSprite(previousSelected);
                     previousSelected.FindAllMatches();
                     previousSelected.DeselectCandy();
                     FindAllMatches();
 
+                    ;
                     GUIManager.sharedInstance.MovesCounter--;
                    
                 }
@@ -194,7 +197,9 @@ public class Candy : MonoBehaviour
             spriteRenderer.sprite = null;
             StopCoroutine(BoardManager.sharedInstance.FindNullCandies());
             StartCoroutine(BoardManager.sharedInstance.FindNullCandies());
+            
         }
+       
     }
 
 }

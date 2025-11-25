@@ -10,6 +10,7 @@ public class GUIManager: MonoBehaviour
     public Text movesText, scoreText;
     private int movesCounter;
     private int score;
+    public int multiScore = 1;
 
     [Header("Game Over UI")] // Ayuda a organizar el inspector
     public GameObject gameOverPanel;
@@ -17,8 +18,18 @@ public class GUIManager: MonoBehaviour
     public Button reiniciarButton;
     public Button menuButton;
 
-    
 
+
+    public void AddScore(int amount)
+    {
+        score += amount * multiScore;
+        scoreText.text = "Score: " + score;
+    }
+
+    public void ResetMultiplier()
+    {
+        multiScore = 1;
+    }
 
     public int MovesCounter
     {

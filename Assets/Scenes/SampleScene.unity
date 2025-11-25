@@ -1276,6 +1276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movesText: {fileID: 2127074021}
   scoreText: {fileID: 509742463}
+  multiScore: 0
   gameOverPanel: {fileID: 1839355038}
   gameOverText: {fileID: 705982297}
   reiniciarButton: {fileID: 652586973}

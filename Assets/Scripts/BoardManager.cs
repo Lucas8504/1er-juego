@@ -70,11 +70,7 @@ public class BoardManager : MonoBehaviour
             }
         }
     }
-    //private List<GameObject> FindMatch(Vector2 direction)
-    //{
-    //     List<GameObject> matchingCandies = new List<GameObject>();
-
-    //}
+    
 
     public IEnumerator FindNullCandies()
     {
@@ -94,6 +90,7 @@ public class BoardManager : MonoBehaviour
             for (int y = 0; y < ySize; y++)
             {
                 candies[x, y].GetComponent<Candy>().FindAllMatches();
+
             }
         }
     }
@@ -114,7 +111,7 @@ public class BoardManager : MonoBehaviour
         }
         for (int i = 0; i < nullCandies; i++)
         {
-            GUIManager.sharedInstance.Score += 10;
+            GUIManager.sharedInstance.AddScore(10);
 
             yield return new WaitForSeconds(shiftDelay);
             for (int j = 0; j < renderers.Count -1; j++)
@@ -124,7 +121,10 @@ public class BoardManager : MonoBehaviour
             }
 
         }
+
         
+           
+
         isShifting = false;
 
     }
