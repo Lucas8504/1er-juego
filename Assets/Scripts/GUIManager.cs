@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement; // 1. IMPORTANTE: Necesario para reiniciar la
 
 public class GUIManager: MonoBehaviour
 {
-    public Text movesText, scoreText;
+    public Text movesText, scoreText,multiScoreText;
     private int movesCounter;
     private int score;
     public int multiScore = 1;
@@ -30,6 +30,17 @@ public class GUIManager: MonoBehaviour
     public void ResetMultiplier()
     {
         multiScore = 1;
+    }
+
+    public int MultiScore
+    {
+        get { return multiScore; }
+
+        set
+        {
+            multiScore = value;
+            multiScoreText.text = "Combos: " + multiScore;
+        }
     }
 
     public int MovesCounter
