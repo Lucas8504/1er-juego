@@ -122,8 +122,11 @@ public class BoardManager : MonoBehaviour
 
         }
 
-        
-           
+        if (nullCandies > 0)
+        {
+            GUIManager.sharedInstance.IncreaseMultiplier();
+        }
+
 
         isShifting = false;
 

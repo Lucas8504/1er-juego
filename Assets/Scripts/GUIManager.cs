@@ -22,14 +22,21 @@ public class GUIManager: MonoBehaviour
 
     public void AddScore(int amount)
     {
-        multiScore++;
+        
+        
         score += amount * multiScore;
         scoreText.text = "Score: " + score;
     }
 
+    // función para subir el combo
+    public void IncreaseMultiplier()
+    {
+        MultiScore++;
+    }
+
     public void ResetMultiplier()
     {
-        multiScore = 1;
+        MultiScore = 1;
     }
 
     public int MultiScore
