@@ -304,7 +304,6 @@ GameObject:
   - component: {fileID: 509742460}
   - component: {fileID: 509742464}
   - component: {fileID: 509742463}
-  - component: {fileID: 509742462}
   - component: {fileID: 509742461}
   m_Layer: 5
   m_Name: Score text
@@ -347,21 +346,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2.45, y: -5.98}
   m_UseGraphicAlpha: 0
---- !u!114 &509742462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509742459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.9622642, g: 0.9304913, b: 0.9304913, a: 0.5}
-  m_EffectDistance: {x: 1.14, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &509742463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,7 +528,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 576.04083, y: 1214.4954}
+  m_AnchoredPosition: {x: 576, y: 1214.4954}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &530936892
@@ -1600,7 +1584,6 @@ GameObject:
   - component: {fileID: 2127074018}
   - component: {fileID: 2127074022}
   - component: {fileID: 2127074021}
-  - component: {fileID: 2127074020}
   - component: {fileID: 2127074019}
   m_Layer: 5
   m_Name: Movestext
@@ -1643,21 +1626,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2.45, y: -5.98}
   m_UseGraphicAlpha: 0
---- !u!114 &2127074020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2127074017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.9622642, g: 0.9304913, b: 0.9304913, a: 0.5}
-  m_EffectDistance: {x: 1.14, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &2127074021
 MonoBehaviour:
   m_ObjectHideFlags: 0
