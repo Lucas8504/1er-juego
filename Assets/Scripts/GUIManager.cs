@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement; // 1. IMPORTANTE: Necesario para reiniciar la
 public class GUIManager: MonoBehaviour
 {
     public Text movesText, scoreText,multiScoreText;
-    private int movesCounter;
+    public int movesCounter;
     private int score;
     public int multiScore = 1;
 
@@ -91,7 +91,7 @@ public class GUIManager: MonoBehaviour
 
 
         score = 0;
-        movesCounter = 30;
+        
         movesText.text = "Moves: " + movesCounter;
         scoreText.text = "Score: " + score;
 

@@ -1230,7 +1230,7 @@ MonoBehaviour:
   - {fileID: 6753843825899217659, guid: 17f33db747f4ebf49a50d5839d393c1a, type: 3}
   currentCandy: {fileID: 659099721928796356, guid: df3df286bed3cfc4e82faddbca9757ec, type: 3}
   xSize: 8
-  ySize: 12
+  ySize: 14
 --- !u!4 &1208956035
 Transform:
   m_ObjectHideFlags: 0
@@ -1357,7 +1357,7 @@ MonoBehaviour:
   movesText: {fileID: 2127074021}
   scoreText: {fileID: 509742463}
   multiScoreText: {fileID: 405126146}
-  movesCounter: 40
+  movesCounter: 30
   multiScore: 1
   gameOverPanel: {fileID: 1839355038}
   gameOverText: {fileID: 705982297}
