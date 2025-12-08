@@ -3,11 +3,11 @@ using UnityEngine.SceneManagement; // Necesario para cargar escenas
 
 public class MenuManager : MonoBehaviour
 {
-    // Define aquí el nombre de la escena de tu juego principal (donde está BoardManager)
-    // Por defecto, asumiremos que se llama "GameScene" o "Level1" si no se ha renombrado.
-    public string nombreEscenaDeJuego = "GameScene";
+   
+    
+    public string nombreEscenaDeJuego = "SampleScene";
 
-    // Función que se llamará al hacer clic en "INICIAR JUEGO"
+    
     public void IniciarJuego()
     {
         // Carga la escena de juego.
