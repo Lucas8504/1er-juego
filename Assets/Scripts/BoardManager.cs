@@ -134,25 +134,23 @@ public class BoardManager : MonoBehaviour
 
     private Sprite GetNewCandy(int x, int y)
     {
-        List<Sprite> possibleCandies = new List<Sprite>();
-        possibleCandies.AddRange(prefabs);
-        
+        List<int> adjacentIds = new List<int>();
+
         if (x > 0)
-        {
-           possibleCandies.Remove(candies[x -1, y].GetComponent<SpriteRenderer>().sprite);
-        }
-        
-        if (x < xSize -1)
-        {
-            possibleCandies.Remove(candies[x + 1, y].GetComponent<SpriteRenderer>().sprite);
-        }
-        
+            adjacentIds.Add(candies[x - 1, y].GetComponent<Candy>().id);
+        if (x < xSize - 1)
+            adjacentIds.Add(candies[x + 1, y].GetComponent<Candy>().id);
         if (y > 0)
+            adjacentIds.Add(candies[x, y - 1].GetComponent<Candy>().id);
+
+        List<Sprite> possibleCandies = new List<Sprite>();
+        for (int i = 0; i < prefabs.Count; i++)
         {
-            possibleCandies.Remove(candies[x, y -1].GetComponent<SpriteRenderer>().sprite);
+            if (!adjacentIds.Contains(i))
+                possibleCandies.Add(prefabs[i]);
         }
-        return possibleCandies [Random.Range(0, possibleCandies.Count)];
-        
+
+        return possibleCandies[Random.Range(0, possibleCandies.Count)];
     }
 }
  
