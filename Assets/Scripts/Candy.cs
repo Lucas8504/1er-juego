@@ -9,9 +9,11 @@ public class Candy : MonoBehaviour
     private static Candy previousSelected = null;
 
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
     private bool isSelected = false;
 
     public int id;
+    public PieceDefinition piece;
 
     private Vector2[] adjacenDirections = new Vector2[]
     {
@@ -24,6 +26,26 @@ public class Candy : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+    }
+
+    public void SetPiece(PieceDefinition newPiece)
+    {
+        piece = newPiece;
+        if (newPiece != null)
+        {
+            id = newPiece.id;
+            spriteRenderer.sprite = newPiece.sprite;
+            if (animator != null && newPiece.animatorOverride != null)
+            {
+                animator.runtimeAnimatorController = newPiece.animatorOverride;
+            }
+        }
+        else
+        {
+            id = -1;
+            spriteRenderer.sprite = null;
+        }
     }
 
     private void SelectCandy()
@@ -46,7 +68,7 @@ public class Candy : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (spriteRenderer.sprite == null || BoardManager.sharedInstance.isShifting)
+        if (piece == null || BoardManager.sharedInstance.isShifting)
         {
             return;
         }
@@ -66,7 +88,7 @@ public class Candy : MonoBehaviour
                 {
                     GUIManager.sharedInstance.ResetMultiplier();
 
-                    SwapSprite(previousSelected);
+                    SwapPiece(previousSelected);
                     previousSelected.FindAllMatches();
                     previousSelected.DeselectCandy();
                     FindAllMatches();
@@ -85,20 +107,16 @@ public class Candy : MonoBehaviour
         }
     }
 
-    public void SwapSprite(Candy newCandy)
+    public void SwapPiece(Candy other)
     {
-
-        if (spriteRenderer.sprite == newCandy.GetComponent<SpriteRenderer>().sprite)
+        if (this.piece == other.piece)
         {
             return;
         }
-        Sprite oldCandy = newCandy.spriteRenderer.sprite;
-        newCandy.spriteRenderer.sprite = this.spriteRenderer.sprite;
-        this.spriteRenderer.sprite = oldCandy;
 
-        int tempId = newCandy.id;
-        newCandy.id = this.id;
-        this.id = tempId;
+        PieceDefinition tempPiece = this.piece;
+        this.SetPiece(other.piece);
+        other.SetPiece(tempPiece);
     }
 
     private GameObject GetNeighbor(Vector2 direction)
@@ -162,7 +180,7 @@ public class Candy : MonoBehaviour
         {
             foreach (GameObject candy in matchingCandies)
             {
-                candy.GetComponent<SpriteRenderer>().sprite = null;
+                candy.GetComponent<Candy>().SetPiece(null);
             }
 
             return true;
@@ -176,7 +194,7 @@ public class Candy : MonoBehaviour
 
     public void FindAllMatches()
     {
-        if (spriteRenderer.sprite == null)
+        if (piece == null)
         {
             return;
         }
@@ -193,7 +211,7 @@ public class Candy : MonoBehaviour
 
         if (hMatch || vMatch)
         {
-            spriteRenderer.sprite = null;
+            SetPiece(null);
             StopCoroutine(BoardManager.sharedInstance.FindNullCandies());
             StartCoroutine(BoardManager.sharedInstance.FindNullCandies());
             

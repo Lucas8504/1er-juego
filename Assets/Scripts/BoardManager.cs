@@ -5,7 +5,7 @@ using UnityEngine;
 public class BoardManager : MonoBehaviour
 {
     public static BoardManager sharedInstance;
-    public List<Sprite> prefabs = new List<Sprite>();
+    public List<PieceDefinition> prefabs = new List<PieceDefinition>();
     public GameObject currentCandy;
     public int xSize, ySize;
 
@@ -33,7 +33,6 @@ public class BoardManager : MonoBehaviour
     }
 
     private void CreateInitialBoard(Vector2 offset)
-
     {
         candies = new GameObject[xSize, ySize];
 
@@ -59,14 +58,11 @@ public class BoardManager : MonoBehaviour
                 } while ((x > 0 && idx == candies[x - 1, y].GetComponent<Candy>().id) ||
                         (y > 0 && idx == candies[x, y - 1].GetComponent<Candy>().id));
 
-                Sprite sprite = prefabs[idx];
-                newCandy.GetComponent<SpriteRenderer>().sprite = sprite;
-                newCandy.GetComponent<Candy>().id = idx;
+                Candy candy = newCandy.GetComponent<Candy>();
+                candy.SetPiece(prefabs[idx]);
 
                 newCandy.transform.parent = this.transform;
                 candies[x, y] = newCandy;
-
-
             }
         }
     }
@@ -78,7 +74,7 @@ public class BoardManager : MonoBehaviour
         {
             for (int y = 0; y < ySize; y++)
             {
-                if (candies[x, y].GetComponent<SpriteRenderer>().sprite == null)
+                if (candies[x, y].GetComponent<Candy>().piece == null)
                 {
                     yield return StartCoroutine(MakeCandiesFall(x, y));
                 }
@@ -90,7 +86,6 @@ public class BoardManager : MonoBehaviour
             for (int y = 0; y < ySize; y++)
             {
                 candies[x, y].GetComponent<Candy>().FindAllMatches();
-
             }
         }
     }
@@ -98,28 +93,29 @@ public class BoardManager : MonoBehaviour
     private IEnumerator MakeCandiesFall(int x, int yStart, float shiftDelay = 0.05f)
     {
         isShifting = true;
-        List<SpriteRenderer> renderers = new List<SpriteRenderer>();
+        List<Candy> candyColumn = new List<Candy>();
         int nullCandies = 0;
+
         for (int y = yStart; y < ySize; y++)
         {
-            SpriteRenderer spriteRenderer = candies[x, y].GetComponent<SpriteRenderer>();
-            if (spriteRenderer.sprite == null)
+            Candy candy = candies[x, y].GetComponent<Candy>();
+            if (candy.piece == null)
             {
                 nullCandies++;
             }
-            renderers.Add(spriteRenderer);
+            candyColumn.Add(candy);
         }
+
         for (int i = 0; i < nullCandies; i++)
         {
             GUIManager.sharedInstance.AddScore(10);
 
             yield return new WaitForSeconds(shiftDelay);
-            for (int j = 0; j < renderers.Count -1; j++)
+            for (int j = 0; j < candyColumn.Count - 1; j++)
             {
-                renderers[j].sprite = renderers[j + 1].sprite;
-                renderers[j + 1].sprite = GetNewCandy(x,ySize-1);
+                candyColumn[j].SetPiece(candyColumn[j + 1].piece);
+                candyColumn[j + 1].SetPiece(GetNewCandy(x, ySize - 1));
             }
-
         }
 
         if (nullCandies > 0)
@@ -127,12 +123,10 @@ public class BoardManager : MonoBehaviour
             GUIManager.sharedInstance.IncreaseMultiplier();
         }
 
-
         isShifting = false;
-
     }
 
-    private Sprite GetNewCandy(int x, int y)
+    private PieceDefinition GetNewCandy(int x, int y)
     {
         List<int> adjacentIds = new List<int>();
 
@@ -143,14 +137,13 @@ public class BoardManager : MonoBehaviour
         if (y > 0)
             adjacentIds.Add(candies[x, y - 1].GetComponent<Candy>().id);
 
-        List<Sprite> possibleCandies = new List<Sprite>();
+        List<PieceDefinition> possibleCandies = new List<PieceDefinition>();
         for (int i = 0; i < prefabs.Count; i++)
         {
-            if (!adjacentIds.Contains(i))
+            if (!adjacentIds.Contains(prefabs[i].id))
                 possibleCandies.Add(prefabs[i]);
         }
 
         return possibleCandies[Random.Range(0, possibleCandies.Count)];
     }
 }
- 
