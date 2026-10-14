@@ -1222,12 +1222,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: -7559200343353160856, guid: 5e96c246e90a1c347a31335967cab54d, type: 3}
-  - {fileID: -7281210608727119603, guid: 17f33db747f4ebf49a50d5839d393c1a, type: 3}
-  - {fileID: -1429104992643050931, guid: 17f33db747f4ebf49a50d5839d393c1a, type: 3}
-  - {fileID: -6294263568043735178, guid: 17f33db747f4ebf49a50d5839d393c1a, type: 3}
-  - {fileID: 4328965457779499785, guid: 17f33db747f4ebf49a50d5839d393c1a, type: 3}
-  - {fileID: 6753843825899217659, guid: 17f33db747f4ebf49a50d5839d393c1a, type: 3}
+  - {fileID: 11400000, guid: baeaf6591c73e97468f7db0558dab1fd, type: 2}
+  - {fileID: 11400000, guid: 61f2aa4f7c961de45b730c2887766e26, type: 2}
+  - {fileID: 11400000, guid: 68aa856eaa4ac56448c8b770c2ba51b5, type: 2}
+  - {fileID: 11400000, guid: 7e1e34e0f05d6b644b06ea8038f13b16, type: 2}
+  - {fileID: 11400000, guid: 668d994dc80f3c544bc28941de6d0854, type: 2}
+  - {fileID: 11400000, guid: 2ef58cdef1d71c14da99a6a23a31b055, type: 2}
   currentCandy: {fileID: 659099721928796356, guid: df3df286bed3cfc4e82faddbca9757ec, type: 3}
   xSize: 8
   ySize: 12
