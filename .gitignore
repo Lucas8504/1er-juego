@@ -57,3 +57,4 @@ LocalSettings.json
 *.log
 *.crashlog
 *.dmp
+.engram/config.json
