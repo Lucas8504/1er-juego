@@ -142,12 +142,12 @@ TextureImporter:
       name: scene00033-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 5
+        x: 0
         y: 8
         width: 444
         height: 535
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 809261c409abc57498327b82cd0028f2
     internalID: 0
     vertices: []
     indices: 
@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scene00033-removebg-preview_0: -5548616263892980035
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
